@@ -1,7 +1,7 @@
 # TileWizard [Alpha! Unstable!]
 
 ![Alt text](/screenshots/screenshot1.jpg?raw=true "Settings")
-![Alt text](/screenshots/screenshot2.png?raw=true "Quick Settings")
+![Alt text](/screenshots/screenshot2.jpg?raw=true "Quick Settings")
 
 ## Functionality:
 
