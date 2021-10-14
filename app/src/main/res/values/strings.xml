@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TileWizard</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="offline">Offline</string>
+    <string name="socket_title">Socket %s</string>
+    <string name="sockets_title">Sockets in Quick Settings</string>
+    <string name="name">Name</string>
+    <string name="ip">IP Address</string>
+    <string name="reboot_message">Tile will be removed from quick settings after phone reboot!</string>
+    <string name="saved">Saved (visibility might take a while)</string>
+    <string name="not_saved">Not saved</string>
+</resources>

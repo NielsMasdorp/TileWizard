@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TileWizard</string>
+    <string name="on">Aan</string>
+    <string name="off">Uit</string>
+    <string name="offline">Offline</string>
+    <string name="socket_title">Stekker %S</string>
+    <string name="sockets_title">Stekkers in Quick Settings</string>
+    <string name="name">Naam</string>
+    <string name="ip">IP Adres</string>
+    <string name="reboot_message">Tile zal verwijderd worden uit quick settings na opnieuw opstarten van device!</string>
+    <string name="saved">Opgeslagen (zichtbaarheid Kan even duren)</string>
+    <string name="not_saved">Niet opgeslagen</string>
+</resources>
