@@ -16,7 +16,23 @@
 2. Find the IP Address of the Energy Socket and give it a static IP in your router's settings
 
 You can test the socket in the browser when, and only when, you are connected to the same Wi-Fi network as your socket.
-Go to: http://{ip}/api/v1/state and you should see a JSON response showing the status of the socket.
+Go to: `http://{ip}/api/v1/state` and you should see a JSON response showing the status of the socket.
+
+```
+<Request>
+GET http://{IP address}/api/v1/state HTTP/1.1
+
+<Response>
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: <length>
+
+{
+   "power_on": true,
+   "switch_lock": false,
+   "brightness": 255
+}
+```
 
 3. Add the IP Address to the app and give the socket a name
 4. Set the switch to on (Note: this does not turn on the socket, but creates a new tile in quick setting with the provided info)
