@@ -6,6 +6,7 @@ import com.nielsmasdorp.tilewizard.data.PaperSocketInfoRepository
 import com.nielsmasdorp.tilewizard.data.network.ApiSocketService
 import com.nielsmasdorp.tilewizard.presentation.tiles.QsTileManager
 import com.nielsmasdorp.tilewizard.presentation.settings.SettingsViewModel
+import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.ext.koin.viewModel

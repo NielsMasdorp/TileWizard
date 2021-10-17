@@ -10,10 +10,9 @@ import kotlinx.coroutines.*
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
-open class TileWizardService(private val id: Int) : TileService(),
-    KoinComponent {
+open class TileWizardService(private val id: Int) : TileService(), KoinComponent {
 
-    private val scope = CoroutineScope(Dispatchers.IO + Job())
+    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     private val getSocketState: GetSocketState by inject()
 
@@ -24,18 +23,26 @@ open class TileWizardService(private val id: Int) : TileService(),
     override fun onStartListening() {
         scope.launch {
             val info = getSocketInfo(id = id)
-            updateTile(getSocketState(ip = info.ip), info)
+            updateTile(getSocketState(ip = info.ip, current = mapTileToSocketState()), info)
         }
     }
 
-    override fun onStopListening() = scope.cancel()
+    override fun onStopListening() = scope.coroutineContext.cancelChildren()
 
     override fun onClick() {
         scope.launch {
             val info = getSocketInfo(id = id)
             val result = when (qsTile.state) {
-                STATE_ACTIVE -> updateSocketState(info.ip, OFF)
-                STATE_INACTIVE -> updateSocketState(info.ip, ON)
+                STATE_ACTIVE -> updateSocketState(
+                    ip = info.ip,
+                    current = mapTileToSocketState(),
+                    new = OFF
+                )
+                STATE_INACTIVE -> updateSocketState(
+                    ip = info.ip,
+                    current = mapTileToSocketState(),
+                    new = ON
+                )
                 else -> UNAVAILABLE
             }
             updateTile(result, info)
@@ -58,6 +65,14 @@ open class TileWizardService(private val id: Int) : TileService(),
                 }
             }
             updateTile()
+        }
+    }
+
+    private fun mapTileToSocketState(): SocketState {
+        return when (qsTile.state) {
+            STATE_ACTIVE -> ON
+            STATE_INACTIVE -> OFF
+            else -> UNAVAILABLE
         }
     }
 }
