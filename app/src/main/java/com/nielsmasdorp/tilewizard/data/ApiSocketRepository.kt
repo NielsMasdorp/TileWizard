@@ -45,8 +45,8 @@ class ApiSocketRepository(private val socketService: ApiSocketService) : SocketR
             // Can't find IP, must not be connected to same WiFi
             UNAVAILABLE
         } catch (ex: SocketException) {
-            // Cancelled request, return old state
-            current
+            // Can't find IP, must not be connected to same WiFi
+            UNAVAILABLE
         } catch (ex: IOException) {
             // Cancelled request, return old state
             current

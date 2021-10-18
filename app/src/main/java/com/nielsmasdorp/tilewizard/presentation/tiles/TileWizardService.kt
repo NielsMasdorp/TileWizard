@@ -33,16 +33,22 @@ open class TileWizardService(private val id: Int) : TileService(), KoinComponent
         scope.launch {
             val info = getSocketInfo(id = id)
             val result = when (qsTile.state) {
-                STATE_ACTIVE -> updateSocketState(
-                    ip = info.ip,
-                    current = mapTileToSocketState(),
-                    new = OFF
-                )
-                STATE_INACTIVE -> updateSocketState(
-                    ip = info.ip,
-                    current = mapTileToSocketState(),
-                    new = ON
-                )
+                STATE_ACTIVE -> {
+                    updateTile(state = OFF, info = info) // eagerly show new state
+                    updateSocketState(
+                        ip = info.ip,
+                        current = mapTileToSocketState(),
+                        new = OFF
+                    )
+                }
+                STATE_INACTIVE -> {
+                    updateTile(state = ON, info = info) // eagerly show new state
+                    updateSocketState(
+                        ip = info.ip,
+                        current = mapTileToSocketState(),
+                        new = ON
+                    )
+                }
                 else -> UNAVAILABLE
             }
             updateTile(result, info)
